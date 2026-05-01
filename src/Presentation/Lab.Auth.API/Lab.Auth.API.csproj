@@ -7,7 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\Lab.Auth.Application\Lab.Auth.Application.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Lab.Auth.Persistence\Lab.Auth.Persistence.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Lab.Auth.Infrastructure\Lab.Auth.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
