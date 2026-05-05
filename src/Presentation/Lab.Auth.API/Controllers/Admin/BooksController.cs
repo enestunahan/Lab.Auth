@@ -1,6 +1,7 @@
 using Lab.Auth.Application.Features.Books.Commands.CreateBook;
 using Lab.Auth.Application.Features.Books.Commands.DeleteBook;
 using Lab.Auth.Application.Features.Books.Commands.UpdateBook;
+using Lab.Auth.Application.Features.Books.Queries.GetBookById;
 using Lab.Auth.Application.Features.Books.Queries.GetBooksList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,16 @@ public class BooksController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> GetList(CancellationToken cancellationToken)
     {
         var result = await mediator.Send(new GetBooksListQuery(), cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        var result = await mediator.Send(new GetBookByIdQuery { Id = id }, cancellationToken);
+        if (result is null)
+            return NotFound();
+
         return Ok(result);
     }
 
